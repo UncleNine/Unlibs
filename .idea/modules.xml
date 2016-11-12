@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/GridViewEx/GridViewEx.iml" filepath="$PROJECT_DIR$/GridViewEx/GridViewEx.iml" />
       <module fileurl="file://$PROJECT_DIR$/Unlibs.iml" filepath="$PROJECT_DIR$/Unlibs.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>

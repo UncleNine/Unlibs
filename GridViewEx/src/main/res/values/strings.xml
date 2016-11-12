@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Unlibs</string>
+    <string name="tip_1_adding_a_item">You can add a item with a click on the adding item</string>
+    <string name="tip_2_delete_a_item">You can delete a normal item with a long click on the normal item</string>
+</resources>

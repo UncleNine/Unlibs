@@ -1,8 +1,8 @@
 package com.nine.uncle.unlibs;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -51,7 +51,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
+        FakeBean item = (FakeBean) parent.getItemAtPosition(position);
+        if (item.fakeType == 0) {
+            mGvAdapter.remove(position);
+        }
         return false;
     }
 

@@ -1,7 +1,6 @@
 package com.nine.uncle.unlibs.bean;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 /**
  * Created by Nine on 2016/11/12.
