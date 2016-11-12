@@ -16,9 +16,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener {
 
-    private GridView mGv;
+    private GridView          mGv;
     private List<GeneralBean> mDatas;
-    private GvAdapter mGvAdapter;
+    private GvAdapter         mGvAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,38 +29,58 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private void initView() {
         mGv = (GridView) findViewById(R.id.gv);
+        mGv.setOnItemClickListener(this);
+        mGv.setOnItemLongClickListener(this);
+        initData();
+
+    }
+
+    private void initData() {
         mDatas = new ArrayList<>();
         for (int i = 0; i < 10; i++) {//all the data are real data ,
             GeneralBean item = new GeneralBean(i + "", "name " + i, i, null, 0);
             mDatas.add(item);
         }
-        //mGv.setNumColumns(4);
         mGvAdapter = new GvAdapter(this, mDatas, 4);
-
         mGv.setAdapter(mGvAdapter);
-        mGv.setOnItemClickListener(this);
-        mGv.setOnItemLongClickListener(this);
     }
 
+    /**
+     * handle onItemLongClick of the gridview
+     *
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     * @return
+     */
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         FakeBean item = (FakeBean) parent.getItemAtPosition(position);
         if (item.fakeType == 0) {
-            mGvAdapter.remove(position);
+            mGvAdapter.remove(position);//remove the item
         }
         return false;
     }
 
+    /**
+     * handle onItemClick of the gridview
+     *
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         FakeBean item = (FakeBean) parent.getItemAtPosition(position);
-        if (item.fakeType == 0) {
+        if (item.fakeType == 0) {//handle the normal item's click
             GeneralBean bean = (GeneralBean) item;
             Toast.makeText(this, bean.name, Toast.LENGTH_SHORT).show();
-        } else if (item.fakeType == 2) {
+        } else if (item.fakeType == 2) {//handle the adding item's click
             GeneralBean bean = new GeneralBean(position + "", "name " + position, position, null, 0);
             mGvAdapter.add(position, bean);
-        } else {
+        } else {//handle the empty item's click
             Toast.makeText(this, "empty", Toast.LENGTH_SHORT).show();
         }
     }

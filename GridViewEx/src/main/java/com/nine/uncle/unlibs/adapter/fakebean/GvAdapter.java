@@ -14,6 +14,7 @@ import com.nine.uncle.unlibs.bean.GeneralBean;
 import java.util.List;
 
 /**
+ * the adapter of GeneralBean for gridview
  * Created by Nine on 2016/11/13.
  */
 public class GvAdapter extends FakeBeanAdapter<GeneralBean> {
@@ -31,18 +32,25 @@ public class GvAdapter extends FakeBeanAdapter<GeneralBean> {
         return holder;
     }
 
+    /**
+     * implement the newview
+     *
+     * @param position
+     * @param parent
+     * @return
+     */
     @Override
     public View newView(int position, ViewGroup parent) {
         return View.inflate(mContext, R.layout.item_gv_tviv, null);
     }
 
 
-    class ViewHolder implements MyBaseAdapter.ViewHolder{
-        TextView tvName;
+    class ViewHolder implements MyBaseAdapter.ViewHolder {
+        TextView  tvName;
         ImageView ivIcon;
 
         @Override
-        public void bindData(int position, View convertView, ViewGroup parent) {
+        public void bindData(int position, View convertView, ViewGroup parent) {//bind the data
             FakeBean item = (FakeBean) getItem(position);
             this.ivIcon.setVisibility(View.VISIBLE);
             convertView.setBackgroundResource(android.R.color.darker_gray);

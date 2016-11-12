@@ -8,7 +8,7 @@ import android.os.Parcel;
 public class GeneralBean extends FakeBean {
     public String id;
     public String name;
-    public int type;
+    public int    type;
     public String icon;
 
     public GeneralBean() {
