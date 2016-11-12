@@ -1,7 +1,6 @@
 package com.nine.uncle.unlibs.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -22,24 +21,8 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
         this.mNumColums = numcolums;
     }
 
-    @Override
-    public int getCount() {
-        if (mDatas != null && mDatas.size() > 0) {
-            int emptyCount = (3 - mDatas.size() % 3) % 3;
-            return mDatas.size() + emptyCount;
-        }
-        return 0;
-    }
 
-    @Override
-    public Object getItem(int position) {
-        if (position < mDatas.size()) {
-            return mDatas.get(position);
-        }
-        return getFakeBean();
-    }
-
-    protected abstract Object getFakeBean();
+    protected abstract Object getEmptyBean();
 
     @Override
     public long getItemId(int position) {

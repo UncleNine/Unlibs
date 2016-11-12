@@ -28,7 +28,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="5dp"
         android:horizontalSpacing="1px"
-        android:numColumns="3"
+        android:numColumns="4"
         android:background="@color/color_gray"
         android:verticalSpacing="1px"/>
 </LinearLayout>
