@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Toast.makeText(this, bean.name, Toast.LENGTH_SHORT).show();
         } else if (item.fakeType == 2) {
             GeneralBean bean = new GeneralBean(position + "", "name " + position, position, null, 0);
-            //mDatas.add(position,bean);
             mGvAdapter.add(position, bean);
         } else {
             Toast.makeText(this, "empty", Toast.LENGTH_SHORT).show();
@@ -86,41 +85,42 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
         @Override
-        public View initView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder;
-            if (convertView == null) {
-                convertView = View.inflate(mContext, R.layout.item_gv_tviv, null);
-                holder = new ViewHolder();
-                holder.ivIcon = (ImageView) convertView.findViewById(R.id.iv_icon);
-                holder.tvName = (TextView) convertView.findViewById(R.id.tv_name);
-                convertView.setTag(holder);
-            } else {
-                holder = (ViewHolder) convertView.getTag();
-            }
+        protected MyBaseAdapter.ViewHolder getHolder(View convertView) {
+            ViewHolder holder = new ViewHolder();
+            holder.ivIcon = (ImageView) convertView.findViewById(R.id.iv_icon);
+            holder.tvName = (TextView) convertView.findViewById(R.id.tv_name);
 
-            FakeBean item = (FakeBean) getItem(position);
-            holder.ivIcon.setVisibility(View.VISIBLE);
-            convertView.setBackgroundResource(android.R.color.darker_gray);
-            if (item.fakeType == 1) {
-                holder.tvName.setText("");
-                holder.ivIcon.setVisibility(View.INVISIBLE);
-                convertView.setBackgroundResource(android.R.color.white);
-            } else if (item.fakeType == 2) {
-                holder.ivIcon.setImageResource(R.mipmap.ic_menu_add);
-                holder.tvName.setText("");
-            } else {
-                GeneralBean bean = (GeneralBean) item;
-                holder.ivIcon.setImageResource(R.mipmap.ic_launcher);
-                holder.tvName.setText(bean.name);
-            }
+            return holder;
+        }
 
-            return convertView;
+        @Override
+        public View newView(int position, ViewGroup parent) {
+            return View.inflate(mContext, R.layout.item_gv_tviv, null);
         }
 
 
-        class ViewHolder {
+        class ViewHolder implements MyBaseAdapter.ViewHolder{
             TextView tvName;
             ImageView ivIcon;
+
+            @Override
+            public void bindData(int position, View convertView, ViewGroup parent) {
+                FakeBean item = (FakeBean) getItem(position);
+                this.ivIcon.setVisibility(View.VISIBLE);
+                convertView.setBackgroundResource(android.R.color.darker_gray);
+                if (item.fakeType == 1) {
+                    this.tvName.setText("");
+                    this.ivIcon.setVisibility(View.INVISIBLE);
+                    convertView.setBackgroundResource(android.R.color.white);
+                } else if (item.fakeType == 2) {
+                    this.ivIcon.setImageResource(R.mipmap.ic_menu_add);
+                    this.tvName.setText("");
+                } else {
+                    GeneralBean bean = (GeneralBean) item;
+                    this.ivIcon.setImageResource(R.mipmap.ic_launcher);
+                    this.tvName.setText(bean.name);
+                }
+            }
         }
     }
 
